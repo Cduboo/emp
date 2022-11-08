@@ -8,7 +8,8 @@
 	//1) 요청 분석(Controller)
 	String deptNo = null;
 	String deptName = null;
-	if(! request.getParameter("deptNo").equals("") && request.getParameter("deptName").equals("")){
+	// 빈 값 검사
+	if(! request.getParameter("deptNo").equals("") || request.getParameter("deptName").equals("")){
 		deptNo = request.getParameter("deptNo");
 		deptName = request.getParameter("deptName");		
 	}else{
