@@ -1,0 +1,17 @@
+
+nav,
+nav a{
+	background-color : #1e3799;
+	color : white;
+}
+nav a:hover{
+	background-color : #3c6382;
+	color : white;
+}
+thead{
+	background-color : #6a89cc;
+	color : white;
+}
+a{
+	
+}
