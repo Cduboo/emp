@@ -60,7 +60,7 @@
 		</div>	
 		<div class="font-weight-bold">
 			<!-- 부서 목록 추가 (부서번호 내림차순) -->
-			<h2 class="pb-1 pt-1">&#128188; 부서 목록</h2>
+			<h2 class="pb-1 pt-1">💼 부서 목록</h2>
 			<a class="btn btn-info float-right mr-3 mb-3" href="<%=request.getContextPath()%>/dept/insertDeptForm.jsp">부서추가</a>
 			<table class="table table-striped table-hover">
 				<thead class="sticky-top">
