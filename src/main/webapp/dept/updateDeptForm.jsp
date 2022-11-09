@@ -10,7 +10,12 @@
 	//1) 요청 분석(Controller)
 	Department d = new Department();
 	String deptNo = request.getParameter("deptNo");
-
+	// 주소창 직접 접근 시 null값 검사
+	if(deptNo == null){
+		response.sendRedirect(request.getContextPath()+"/dept/deptList.jsp");
+		return;
+	}
+	
 	//db정보
 	String url = "jdbc:mariadb://localhost:3306/employees";
 	String user = "root";
