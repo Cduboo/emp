@@ -13,18 +13,8 @@
 	<body>
 		<!-- nav -->
 		<nav class="sticky-top pt-3">
-			<h1>EMPLOYEES</h1>
-			<ul class="nav">
-			  <li class="nav-item">
-			    <a class="nav-link rounded" href="<%=request.getContextPath()%>/index.jsp">홈</a>
-			  </li>
-			  <li class="nav-item">
-			    <a class="nav-link rounded" href="<%=request.getContextPath()%>/dept/deptList.jsp">부서</a>
-			  </li>		  
-			  <li class="nav-item">
-			    <a class="nav-link rounded" href="#">사원</a>
-			  </li>		  
-			</ul>
+			<!-- request.getContextPath()는 클라이언트(밖)가 부를 때 사용한다. include는 서버(안)가 부른다. -->
+			<jsp:include page="/inc/menu.jsp"></jsp:include>
 		</nav>
 		<!-- 본문 내용 -->
 		<h1>미완</h1>

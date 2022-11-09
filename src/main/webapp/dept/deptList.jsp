@@ -52,18 +52,7 @@
 	<body>
 		<!-- nav -->
 		<nav class="sticky-top pt-3">
-				<h1>EMPLOYEES</h1>
-				<ul class="nav">
-				  <li class="nav-item">
-				    <a class="nav-link rounded" href="<%=request.getContextPath()%>/index.jsp">홈</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link rounded" href="#">부서</a>
-				  </li>		  
-				  <li class="nav-item">
-				    <a class="nav-link rounded" href="#">사원</a>
-				  </li>		  
-				</ul>
+			<jsp:include page="/inc/menu.jsp"></jsp:include> 
 		</nav>
 		<!-- 본문 -->
 		<div>
