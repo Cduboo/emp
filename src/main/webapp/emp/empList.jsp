@@ -67,10 +67,8 @@
 	</head>
 	<body>
 		<!-- nav -->
-		<nav>
-			<jsp:include page="/inc/menu.jsp"></jsp:include>
-		</nav>
-				<!-- 본문 -->
+		<jsp:include page="/inc/menu.jsp"></jsp:include>
+		<!-- 본문 -->
 		<div>
 			<h1 class="pb-1 pt-1">EMP LIST</h1>	
 		</div>	

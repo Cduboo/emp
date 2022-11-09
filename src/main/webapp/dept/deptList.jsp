@@ -51,9 +51,7 @@
 	</head>
 	<body>
 		<!-- nav -->
-		<nav class="sticky-top pt-3">
-			<jsp:include page="/inc/menu.jsp"></jsp:include> 
-		</nav>
+		<jsp:include page="/inc/menu.jsp"></jsp:include> 
 		<!-- 본문 -->
 		<div>
 			<h1 class="pb-1 pt-1">DEPT LIST</h1>	
