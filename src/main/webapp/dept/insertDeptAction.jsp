@@ -10,13 +10,12 @@
 	String deptNo = null;
 	String deptName = null;
 	// 빈 값 검사
-	if(! request.getParameter("deptNo").equals("") || request.getParameter("deptName").equals("")){
+	if(request.getParameter("deptNo")==null ||  request.getParameter("deptName")==null || request.getParameter("deptNo").equals("") || request.getParameter("deptName").equals("")){
+		response.sendRedirect(request.getContextPath()+"/dept/deptList.jsp");
+		return;
+	}else{
 		deptNo = request.getParameter("deptNo");
 		deptName = request.getParameter("deptName");		
-	}else{
-		String msg = URLEncoder.encode("DEPT NO와 DEPT NAME을 입력하세요.","utf-8");
-		response.sendRedirect(request.getContextPath()+"/dept/insertDeptForm.jsp?msg="+msg);
-		return;
 	}
 	
 	//db정보

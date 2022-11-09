@@ -104,7 +104,7 @@
 			</table>
 		</div>
 
-
+		
 		
 		<div class="text-right">현재 페이지 : <%=currentPage%></div>
 		<!-- 페이징 코드 -->
