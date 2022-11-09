@@ -11,7 +11,7 @@
 	Department d = new Department();
 	String deptNo = request.getParameter("deptNo");
 	// 주소창 직접 접근 시 null값 검사
-	if(deptNo == null){
+ 	if(deptNo == null || deptNo.equals("")){
 		response.sendRedirect(request.getContextPath()+"/dept/deptList.jsp");
 		return;
 	}
@@ -53,16 +53,35 @@
 		<div class="container rounded bg-white p-5 mt-5 w-50">
 			<form action="<%=request.getContextPath()%>/dept/updateDeptAction.jsp" method="post">
 				<div class="fw-bold text-left font-weight-bold"><h3>수정하기</h3></div>
-				<div class="mb-3 mt-3">
-					<label for="deptNo" class="form-label">DEPT NO</label>
-					<input class="form-control" id="deptNo" type="text" value="<%=d.deptNo%>" name="deptNo" readonly/>
-				</div>
-	
-				<div class="mb-5">
-					<label for="deptName" class="form-label">DEPT NAME</label>
-					<input class="form-control" id="deptName" type="text" value="<%=d.deptName%>" name="deptName"/>
-				</div>
-					<button type="submit" class="btn btn-lg btn-block btn-outline-primary m-auto">수정</button>
+				<%
+					if(request.getParameter("msg") != null){
+				%>
+						<div class="text-danger"><%=request.getParameter("msg")%></div>
+						<div class="mb-3 mt-3">
+							<label for="deptNo" class="form-label">DEPT NO</label>
+							<input class="form-control" id="deptNo" type="text" value="<%=d.deptNo%>" name="deptNo" readonly/>
+						</div>
+			
+						<div class="mb-5">
+							<label for="deptName" class="form-label">DEPT NAME</label>
+							<input class="form-control is-invalid" id="deptName" type="text" name="deptName" required/>
+						</div>				
+				<%		
+					}else{
+				%>
+						<div class="mb-3 mt-3">
+							<label for="deptNo" class="form-label">DEPT NO</label>
+							<input class="form-control" id="deptNo" type="text" value="<%=d.deptNo%>" name="deptNo" readonly/>
+						</div>
+			
+						<div class="mb-5">
+							<label for="deptName" class="form-label">DEPT NAME</label>
+							<input class="form-control" id="deptName" type="text" value="<%=d.deptName%>" name="deptName" required/>
+						</div>						
+				<%		
+					}
+				%>
+				<button type="submit" class="btn btn-lg btn-block btn-outline-primary m-auto">수정</button>
 			</form>
 		</div>
 	</body>
