@@ -23,7 +23,7 @@
 					if(request.getParameter("msg1") != null || request.getParameter("msg2") != null){
 						if(request.getParameter("msg1") != null){
 				%>
-						<div><%=request.getParameter("msg1")%></div>
+						<div class="text-danger"><%=request.getParameter("msg1")%></div>
 						<div class="mb-3 mt-3">
 							<label for="deptNo" class="form-label">DEPT NO</label>
 							<input class="form-control is-invalid" type="text" id="deptNo" name="deptNo" placeholder="d000" required/>
@@ -35,7 +35,7 @@
 				<%			
 						}else if(request.getParameter("msg2") != null){
 				%>
-							<div><%=request.getParameter("msg2")%></div>
+							<div class="text-danger"><%=request.getParameter("msg2")%></div>
 							<div class="mb-3 mt-3">
 								<label for="deptNo" class="form-label">DEPT NO</label>
 								<input class="form-control" type="text" id="deptNo" name="deptNo" placeholder="d000" value="<%=request.getParameter("deptNo")%>" required/>
