@@ -19,16 +19,49 @@
 		<div class="container rounded bg-white p-5 mt-5 w-50">
 			<form action="<%=request.getContextPath()%>/dept/insertDeptAction.jsp" method="post">
 				<div class="fw-bold text-left font-weight-bold"><h3>추가하기</h3></div>
-				<div class="mb-3 mt-3">
-					<label for="deptNo" class="form-label">DEPT NO</label>
-					<input class="form-control" type="text" id="deptNo" name="deptNo" placeholder="d000" required/>
-				</div>
-	
-				<div class="mb-5">
-					<label for="deptName" class="form-label">DEPT NAME</label>
-					<input class="form-control" id="deptName"type="text" name="deptName" required/>
-				</div>
-					<button type="submit" class="btn btn-lg btn-block btn-outline-primary m-auto">추가</button>
+				<%
+					if(request.getParameter("msg1") != null || request.getParameter("msg2") != null){
+						if(request.getParameter("msg1") != null){
+				%>
+						<div><%=request.getParameter("msg1")%></div>
+						<div class="mb-3 mt-3">
+							<label for="deptNo" class="form-label">DEPT NO</label>
+							<input class="form-control is-invalid" type="text" id="deptNo" name="deptNo" placeholder="d000" required/>
+						</div>
+						<div class="mb-5">
+							<label for="deptName" class="form-label">DEPT NAME</label>
+							<input class="form-control" id="deptName"type="text" name="deptName" value="<%=request.getParameter("deptName") %>" required/>
+						</div>
+				<%			
+						}else if(request.getParameter("msg2") != null){
+				%>
+							<div><%=request.getParameter("msg2")%></div>
+							<div class="mb-3 mt-3">
+								<label for="deptNo" class="form-label">DEPT NO</label>
+								<input class="form-control" type="text" id="deptNo" name="deptNo" placeholder="d000" value="<%=request.getParameter("deptNo")%>" required/>
+							</div>
+							<div class="mb-5">
+								<label for="deptName" class="form-label">DEPT NAME</label>
+								<input class="form-control is-invalid" id="deptName"type="text" name="deptName" required/>
+							</div>
+				<%			
+						}
+				%>
+				<%		
+					}else{
+				%>
+						<div class="mb-3 mt-3">
+							<label for="deptNo" class="form-label">DEPT NO</label>
+							<input class="form-control" type="text" id="deptNo" name="deptNo" placeholder="d000" required/>
+						</div>
+						<div class="mb-5">
+							<label for="deptName" class="form-label">DEPT NAME</label>
+							<input class="form-control" id="deptName"type="text" name="deptName" required/>
+						</div>
+				<%		
+					}
+				%>
+				<button type="submit" class="btn btn-lg btn-block btn-outline-primary m-auto">추가</button>
 			</form>
 		</div>
 	</body>
