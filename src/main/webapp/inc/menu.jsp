@@ -11,5 +11,8 @@
 	  <li class="nav-item">
 	    <a class="nav-link rounded" href="<%=request.getContextPath()%>/emp/empList.jsp">사원</a>
 	  </li>
+	 <li class="nav-item">
+	    <a class="nav-link rounded" href="<%=request.getContextPath()%>/board/boardList.jsp">게시판관리</a>
+	  </li>
 	</ul>
 </nav>
