@@ -7,7 +7,8 @@ nav a:hover{
 	background-color : #3c6382;
 	color : white;
 }
-thead{
+thead,
+.head{
 	background-color : #6a89cc;
 	color : white;
 }
