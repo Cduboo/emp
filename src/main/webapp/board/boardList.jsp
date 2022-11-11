@@ -75,7 +75,9 @@
 		</div>	
 		<div class="font-weight-bold">
 			<h2 class="pb-1 pt-1">📃 게시판</h2>
-			<a class="btn btn-info float-right mr-3 mb-3" href="<%=request.getContextPath()%>/board/insertBoardForm.jsp">글쓰기</a>
+			<div class="text-right">
+				<a class="btn btn-info mr-3 mb-3" href="<%=request.getContextPath()%>/board/insertBoardForm.jsp">글쓰기</a>
+			</div>
 			<table class="table table-striped table-hover">
 				<thead class="sticky-top">
 					<th scope="col">NO</th>
@@ -107,8 +109,8 @@
 		</div>
 
 		<!-- 페이징 코드 -->
-		<div class="text-right">현재 페이지 : <%=currentPage%></div>
-		<div class="text-center">
+		<div class="text-right">page : <%=currentPage%> / <%=lastPage%></div>
+		<div class="text-center m-5">
 			<a class="btn btn-sm btn-outline-info mr-3" href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=1">&lt;첫페이지</a>
 			<%
 				if(currentPage > 1){

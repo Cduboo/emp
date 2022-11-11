@@ -104,9 +104,9 @@
 
 		
 		
-		<div class="text-right">현재 페이지 : <%=currentPage%></div>
 		<!-- 페이징 코드 -->
-		<div class="text-center">
+		<div class="text-right"><div class="text-right">page : <%=currentPage%> / <%=lastPage%></div></div>
+		<div class="text-center m-5">
 			<a class="btn btn-sm btn-outline-info mr-3" href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=1">&lt;첫페이지</a>
 			<%
 				if(currentPage > 1){

@@ -26,6 +26,7 @@
 	</head>
 	<body class="bg-secondary">
 		<div class="container rounded bg-white p-5 mt-5 w-50">
+			<div class="fw-bold text-left font-weight-bold"><h3>게시글 삭제</h3></div>
 			<form action="<%=request.getContextPath()%>/board/deleteBoardAction.jsp?boardNo=<%=boardNo%>" method="post">
 				<%
 					if(request.getParameter("msg") != null){

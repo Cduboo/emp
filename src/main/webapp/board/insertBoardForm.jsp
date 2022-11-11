@@ -16,7 +16,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	</head>
 	<body class="bg-secondary">
-		<div class="container rounded bg-white p-5 mt-5 w-50">
+		<div class="container rounded bg-white p-5 mt-5 mb-5 w-50">
 			<form action="<%=request.getContextPath()%>/board/insertBoardAction.jsp" method="post">
 				<div class="fw-bold text-left font-weight-bold"><h3>글쓰기</h3></div>
 					<div class="mb-3 mt-3">
@@ -36,8 +36,8 @@
 						<input class="form-control" type="password" id="titleNo" name="boardPw" required/>
 					</div>
 				<button type="submit" class="btn btn-lg btn-block btn-outline-primary m-auto">글 등록하기</button>
-				<div class="float-right">
-					<a class="btn btn-sm btn-outline-info mt-1" href="<%=request.getContextPath()%>/board/boardList.jsp">목록</a>
+				<div class="text-right">
+					<a class="btn btn-outline-info mt-3" href="<%=request.getContextPath()%>/board/boardList.jsp">목록</a>
 				</div>
 			</form>
 		</div>
