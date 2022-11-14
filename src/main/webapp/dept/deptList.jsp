@@ -8,24 +8,27 @@
 	response.setContentType("text/html; charset=utf-8");
 	response.setCharacterEncoding("utf-8");
 	// 1) 요청 분석(Controller)
-
+	String word = request.getParameter("word");
+	// 요청 분기 : word -> null, "", "word"
 	// 2) 업무(Model) 처리 -> 모델데이터(단일값 or 자료구조형태(배열, 리스트, ...))
 	//db정보
 	String url = "jdbc:mariadb://localhost:3306/employees";
 	String user = "root";
 	String password = "java1234";
-	String sql = "SELECT dept_no deptNo, dept_name deptName FROM departments ORDER BY dept_no desc";
-	
-	// mariadb 드라이버 로딩
 	Class.forName("org.mariadb.jdbc.Driver");
-	System.out.println("드라이버 로딩 성공");
-	
-	// 연결
 	Connection conn = DriverManager.getConnection(url, user, password);
-	System.out.println(conn + " <--- 연결 성공");
 	
-	// 쿼리 실행
-	PreparedStatement stmt = conn.prepareStatement(sql);
+	String sql = null;
+	PreparedStatement stmt = null;
+	if(word == null){
+		sql = "SELECT dept_no deptNo, dept_name deptName FROM departments ORDER BY dept_no desc";
+		stmt = conn.prepareStatement(sql);
+	}else{
+		sql = "SELECT dept_no deptNo, dept_name deptName FROM departments WHERE dept_name LIKE ? ORDER BY dept_no desc";
+		stmt = conn.prepareStatement(sql);
+		stmt.setString(1, "%"+word+"%");
+	}
+	
 	ResultSet rs = stmt.executeQuery(); // <- 모델데이터 ResultSet은 일반적인 타입이 아니다.
 	// 따라서, ResultSet rs라는 모델자료구조를 좀더 일반적이고 독립적인 자료구조로로 변경하자.
 	ArrayList<Department> list = new ArrayList<>();
@@ -35,7 +38,6 @@
 		d.deptName = rs.getString("deptName");
 		list.add(d);
 	}
-	
 	// 3) 출력(view) -> 모델데이터를 고객이 원하는 형태로 출력 -> 뷰(리포트)
 %>
 <!DOCTYPE html>
@@ -58,8 +60,31 @@
 		</div>	
 		<div class="font-weight-bold">
 			<!-- 부서 목록 추가 (부서번호 내림차순) -->
-			<h2 class="pb-1 pt-1">💼 부서 목록</h2>
+			<h2 class="pb-1 pt-1">부서 목록</h2>
 			<a class="btn btn-info float-right mr-3 mb-3" href="<%=request.getContextPath()%>/dept/insertDeptForm.jsp">부서추가</a>
+			<%
+				if(word == null){
+			%>
+					<!-- 부서명 검색창 -->
+					<form action="<%=request.getContextPath()%>/dept/deptList.jsp" method="post">
+						<label for="word">부서명 검색 : </label>
+						<input type="text" id="word" name="word">
+						<button type="submit">검색</button>
+					</form>
+			<%		
+				}else{
+			%>
+					<!-- 부서명 검색창 -->
+					<form action="<%=request.getContextPath()%>/dept/deptList.jsp" method="post">
+						<label for="word">부서명 검색 : </label>
+						<input type="text" id="word" name="word" value="<%=word%>">
+						<button type="submit">검색</button>
+					</form>
+			<%		
+				}
+			%>
+
+			<!-- 부서 리스트 -->
 			<table class="table table-striped table-hover">
 				<thead class="sticky-top">
 					<th scope="col">부서 코드</th>
