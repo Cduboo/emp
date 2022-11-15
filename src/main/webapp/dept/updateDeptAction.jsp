@@ -29,11 +29,8 @@
 	String dupSql = "SELECT dept_name FROM departments WHERE dept_name = ?";
 	// mariadb 드라이버 로딩
 	Class.forName("org.mariadb.jdbc.Driver");
-	System.out.println("드라이버 로딩 성공");
-	
 	// 연결
 	Connection conn = DriverManager.getConnection(url, user, password);
-	System.out.println(conn + " <--- 연결 성공");
 	
 	// 중복 검사 쿼리 실행
 	PreparedStatement dupStmt = conn.prepareStatement(dupSql);
@@ -50,12 +47,11 @@
 	stmt.setString(1, d.deptName);
 	stmt.setString(2, d.deptNo);
 	int row = stmt.executeUpdate();
-	// 디버깅
-	if(row == 1){
-		System.out.println("수정 성공");
-	}else{
-		System.out.println("수정 실패");
-	}
 	
 	response.sendRedirect(request.getContextPath()+"/dept/deptList.jsp");
+	
+	dupRs.close();
+	dupStmt.close();
+	stmt.close();
+	conn.close();
 %>

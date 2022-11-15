@@ -1,3 +1,4 @@
+<%@page import="java.security.interfaces.RSAKey"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="vo.*"%>
 <%@ page import="java.sql.*" %>
@@ -38,4 +39,7 @@
 		String msg = URLEncoder.encode("잘못된 비밀번호","utf-8");
 		response.sendRedirect(request.getContextPath()+"/board/deleteBoardForm.jsp?boardNo="+b.boardNo+"&msg="+msg);
 	}
+	
+	stmt.close();
+	conn.close();
 %>

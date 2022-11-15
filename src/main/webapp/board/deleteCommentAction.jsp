@@ -37,4 +37,7 @@
 		String msg = URLEncoder.encode("잘못된 비밀번호","utf-8");
 		response.sendRedirect(request.getContextPath()+"/board/deleteCommentForm.jsp?boardNo="+boardNo+"&commentNo="+commentNo+"&msg="+msg);
 	}
+	
+	stmt.close();
+	conn.close();
 %>

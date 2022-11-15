@@ -94,6 +94,12 @@
 	if(commentCnt %  rowPerPage!= 0){
 		lastPage = lastPage + 1;
 	}
+	
+	commentRs.close();
+	boardRs.close();
+	commentStmt.close();
+	boardStmt.close();
+	conn.close();
 %>
 <!DOCTYPE html>
 <html>

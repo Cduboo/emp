@@ -47,4 +47,7 @@
 		return;
 	}
 	response.sendRedirect(request.getContextPath()+"/board/boardList.jsp");
+	
+	stmt.close();
+	conn.close();
 %>

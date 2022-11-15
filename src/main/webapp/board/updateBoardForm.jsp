@@ -38,8 +38,10 @@
 		b.boardWriter = rs.getString("boardWriter");
 		b.createdate = rs.getString("createdate");
 	}
-	System.out.println("title >>> "+request.getParameter("boardTitle"));
-	System.out.println("content >>> "+request.getParameter("boardContent"));
+	
+	rs.close();
+	stmt.close();
+	conn.close();
 %>
 <!DOCTYPE html>
 <html>

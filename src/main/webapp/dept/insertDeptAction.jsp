@@ -28,11 +28,8 @@
 	//2)
 	// mariadb 드라이버 로딩
 	Class.forName("org.mariadb.jdbc.Driver");
-	System.out.println("드라이버 로딩 성공");
-	
 	// 연결
 	Connection conn = DriverManager.getConnection(url, user, password);
-	System.out.println(conn + " <--- 연결 성공");
 	
 	//2-1) dept_no 중복 검사
 	PreparedStatement stmt1 = conn.prepareStatement(sql1);
@@ -58,12 +55,13 @@
 	stmt.setString(1, deptNo);
 	stmt.setString(2, deptName);
 	int row = stmt.executeUpdate();
-	// 디버깅
-	if(row == 1){
-		System.out.println("입력 성공");
-	}else{
-		System.out.println("입력 실패");
-	}
 	
 	response.sendRedirect(request.getContextPath()+"/dept/deptList.jsp");
+	
+	rs1.close();
+	rs2.close();
+	stmt.close();
+	stmt1.close();
+	stmt2.close();
+	conn.close();
 %>

@@ -24,11 +24,8 @@
 	
 	// mariadb 드라이버 로딩
 	Class.forName("org.mariadb.jdbc.Driver");
-	System.out.println("드라이버 로딩 성공");
-	
 	// 연결
 	Connection conn = DriverManager.getConnection(url, user, password);
-	System.out.println(conn + " <--- 연결 성공");
 	
 	// 쿼리 실행
 	PreparedStatement stmt = conn.prepareStatement(sql);
@@ -38,6 +35,10 @@
 		d.deptNo = rs.getString("deptNo");
 		d.deptName = rs.getString("deptName");
 	}
+	
+	rs.close();
+	stmt.close();
+	conn.close();
 %>
 <!DOCTYPE html>
 <html>

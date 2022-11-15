@@ -19,22 +19,17 @@
 	
 	// mariadb 드라이버 로딩
 	Class.forName("org.mariadb.jdbc.Driver");
-	System.out.println("드라이버 로딩 성공");
 	
 	// 연결
 	Connection conn = DriverManager.getConnection(url, user, password);
-	System.out.println(conn + " <--- 연결 성공");
 	
 	// 쿼리 실행
 	PreparedStatement stmt = conn.prepareStatement(sql);
 	stmt.setString(1, deptNo);
 	int row = stmt.executeUpdate();
-	// 디버깅
-	if(row == 1){
-		System.out.println("삭제 성공");
-	}else{
-		System.out.println("삭제 실패");
-	}
 	
 	response.sendRedirect(request.getContextPath()+"/dept/deptList.jsp");
+	
+	stmt.close();
+	conn.close();
 %>

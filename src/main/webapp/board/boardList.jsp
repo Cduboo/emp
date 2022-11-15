@@ -72,6 +72,12 @@
 		b.createdate = listRs.getString("createdate");
 		boardList.add(b);
 	}
+	
+	listRs.close();
+	cntRs.close();
+	listStmt.close();
+	cntStmt.close();
+	conn.close();
 %>
 <!DOCTYPE html>
 <html>

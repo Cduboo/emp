@@ -36,4 +36,7 @@
 	if(row == 1){
 		response.sendRedirect(request.getContextPath()+"/board/boardOne.jsp?boardNo="+boardNo);
 	}
+	
+	stmt.close();
+	conn.close();
 %>

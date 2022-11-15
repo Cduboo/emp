@@ -38,7 +38,10 @@
 		d.deptName = rs.getString("deptName");
 		list.add(d);
 	}
-	// 3) 출력(view) -> 모델데이터를 고객이 원하는 형태로 출력 -> 뷰(리포트)
+	
+	rs.close();
+	stmt.close();
+	conn.close();
 %>
 <!DOCTYPE html>
 <html>

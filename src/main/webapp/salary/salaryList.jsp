@@ -86,29 +86,7 @@
 	PreparedStatement empStmt = conn.prepareStatement(empSql);
 	empStmt.setInt(1, empNo);
 	ResultSet empRs = empStmt.executeQuery();
-	
-	/*
-		1) vo.Employee 는 empList에서 썼으니 Hash로 담는게 좋은거?
-		ArrayList<HashMap<String,Object>> empList = new ArrayList<>();
-		if(empRs.next()){
-			HashMap<String, Object> empMap = new HashMap<>();
-			empMap.put("empNo", empRs.getInt("empNo"));
-			. . . 
-			empList.add(empMap);
-		}
-		//출력
-		for(HashMap<String, Object> m : empList){
-			m.get("empNo");
-		}
-	*/
-	
-	/* 
-		2) 한 페이지에서 여러 쿼리문 실행할 때 close 시점
-		empRs.close();
-		empStmt.close();
-		conn.close();
-	*/
-	
+
 	Employee e = null;
 	if(empRs.next()){
 		e = new Employee();
@@ -133,6 +111,18 @@
 		deptEmpMap.put("toDate", deptEmpRs.getString("toDate"));
 		deptEmpList.add(deptEmpMap);
 	}
+	
+	cntRs.close();
+	rs.close();
+	titleRs.close();
+	empRs.close();
+	deptEmpRs.close();
+	cntStmt.close();
+	stmt.close();
+	titleStmt.close();
+	empStmt.close();
+	deptEmpStmt.close();
+	conn.close();
 %>
 <!DOCTYPE html>
 <html>

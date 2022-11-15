@@ -65,6 +65,12 @@
 		e.lastName = empRs.getString("lastName");
 		empList.add(e);
 	}
+	
+	countRs.close();
+	empRs.close();
+	countStmt.close();
+	empStmt.close();
+	conn.close();
 %>
 <!DOCTYPE html>
 <html>

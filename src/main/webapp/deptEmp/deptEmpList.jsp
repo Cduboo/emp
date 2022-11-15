@@ -113,6 +113,16 @@
 		dm.toDate = deptManagerRs.getString("toDate");
 		deptManagerList.add(dm);
 	}
+	
+	cntRs.close();
+	deptEmpRs.close();
+	deptRs.close();
+	deptManagerRs.close();
+	deptEmpStmt.close();
+	deptManagerStmt.close();
+	cntStmt.close();
+	deptStmt.close();
+	conn.close();
 %>
 <!DOCTYPE html>
 <html>
@@ -156,7 +166,7 @@
 				%>
 						<tr>
 							<td><%=dm.emp.empNo%></td>
-							<td><%=dm.emp.firstName%> <%=dm.emp.lastName%></td>
+							<td><a href="<%=request.getContextPath()%>/salary/salaryList.jsp?empNo=<%=dm.emp.empNo%>"><%=dm.emp.firstName%> <%=dm.emp.lastName%></a></td>
 							<td><%=dm.fromDate%> ~ <%=dm.toDate%></td>
 						</tr>
 				<%		
@@ -264,7 +274,7 @@
 				%>
 						<tr>
 							<td><%=e.emp.empNo%></td>
-							<td><%=e.emp.firstName%> <%=e.emp.lastName%></td>
+							<td><a href="<%=request.getContextPath()%>/salary/salaryList.jsp?empNo=<%=e.emp.empNo%>"><%=e.emp.firstName%> <%=e.emp.lastName%></a></td>
 							<td><%=e.fromDate%> ~ <%=e.toDate%></td>
 						</tr>
 				<%		
