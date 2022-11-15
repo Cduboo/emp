@@ -91,10 +91,10 @@
 		<div>
 			<h1 class="pb-1 pt-1">BOARD</h1>	
 		</div>	
-		<div class="font-weight-bold">
+		<div>
 			<h2 class="pb-1 pt-1">게시판</h2>
-			<a class="btn btn-info float-right mr-3 mb-3" href="<%=request.getContextPath()%>/board/insertBoardForm.jsp">글쓰기</a>
 			<div style="position: relative;">
+				<a class="btn btn-info float-right mr-3 mb-3" href="<%=request.getContextPath()%>/board/insertBoardForm.jsp">글쓰기</a>
 				<!-- 부서명 검색창 -->
 				<%
 					if(word == null){
@@ -116,7 +116,7 @@
 					}
 				%>
 				<!-- 페이징 코드 -->
-				<div class="d-flex" style="position: absolute; top:0; left:350px">
+				<div class="d-flex" style="position: absolute; top:0; left:335px">
 					<%
 						if(word == null){
 					%>
@@ -167,11 +167,13 @@
 			
 			<table class="table table-striped table-hover">
 				<thead class="sticky-top">
-					<th scope="col">NO</th>
-					<th scope="col">제목</th>
-					<th scope="col">내용</th>
-					<th scope="col">글쓴이</th>
-					<th scope="col">작성일</th>
+					<tr>
+						<th scope="col">NO</th>
+						<th scope="col">제목</th>
+						<th scope="col">내용</th>
+						<th scope="col">글쓴이</th>
+						<th scope="col">작성일</th>
+					</tr>
 				</thead>
 				<tbody>
 					<%

@@ -58,7 +58,7 @@
 		<div>
 			<h1 class="pb-1 pt-1">DEPT LIST</h1>	
 		</div>	
-		<div class="font-weight-bold">
+		<div>
 			<!-- 부서 목록 추가 (부서번호 내림차순) -->
 			<h2 class="pb-1 pt-1">부서 목록</h2>
 			<a class="btn btn-info float-right mr-3 mb-3" href="<%=request.getContextPath()%>/dept/insertDeptForm.jsp">부서추가</a>
@@ -87,10 +87,12 @@
 			<!-- 부서 리스트 -->
 			<table class="table table-striped table-hover">
 				<thead class="sticky-top">
-					<th scope="col">부서 코드</th>
-					<th scope="col">부서명</th>
-					<th scope="col">수정</th>
-					<th scope="col">삭제</th>
+					<tr>
+						<th scope="col">부서 코드</th>
+						<th scope="col">부서명</th>
+						<th scope="col">수정</th>
+						<th scope="col">삭제</th>
+					</tr>
 				</thead>
 				<tbody>
 					<%
@@ -98,7 +100,7 @@
 					%>
 							<tr>
 								<td><%=d.deptNo%></td>
-								<td><%=d.deptName%></td>
+								<td><a href="<%=request.getContextPath()%>/deptEmp/deptEmpList.jsp?deptNo=<%=d.deptNo%>"><%=d.deptName%></a></td>
 								<td><a class="btn btn-sm btn-outline-info" href="<%=request.getContextPath()%>/dept/updateDeptForm.jsp?deptNo=<%=d.deptNo%>">수정</a></td>
 								<td><a class="btn btn-sm btn-outline-danger" href="<%=request.getContextPath()%>/dept/deleteDept.jsp?deptNo=<%=d.deptNo%>">삭제</a></td>
 							</tr>

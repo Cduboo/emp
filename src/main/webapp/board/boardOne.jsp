@@ -37,6 +37,7 @@
 	boardStmt.setInt(1, boardNo);
 	ResultSet boardRs = boardStmt.executeQuery();
 	Board b = null;
+	/* ArrayList<HashMap<String,Object>> boardList = new ArrayList<>(); */
 	if(boardRs.next()){
 		b = new Board();
 		b.boardNo = boardNo;
@@ -44,6 +45,19 @@
 		b.boardContent = boardRs.getString("boardContent");
 		b.boardWriter = boardRs.getString("boardWriter");
 		b.createdate = boardRs.getString("createdate");
+		
+		/* 		
+		HashMap<String,Object> boardMap = new HashMap<>();
+		boardMap.put("boardTitle", boardRs.getString("boardTitle"));
+		boardMap.put("boardContent", boardRs.getString("boardContent"));
+		...
+		boardList.add(boardMap);
+		
+		//출력
+		for(HashMap<String,Object> m : boardList){
+			m.get("boardTitle");
+			m.get(boardContent");
+		} */
 	}
 	
 	// 댓글
@@ -80,8 +94,6 @@
 	if(commentCnt %  rowPerPage!= 0){
 		lastPage = lastPage + 1;
 	}
-	 	System.out.println("count" + commentCnt);
-		System.out.println("lastPage" + lastPage); 
 %>
 <!DOCTYPE html>
 <html>
@@ -96,16 +108,19 @@
 	</head>
 	<body>
 		<div class="container mt-5">
-			<div class="fw-bold text-left font-weight-bold"><h3>게시글</h3></div>
+			<h3>게시글</h3>
 			<table class="table table-bordered">
+				<tr>
 					<td>글번호 : <%=b.boardNo%></td>
 					<td>제목 : <%=b.boardTitle%></td>
-					<td>글쓴이 : <%=b.boardWriter%></td>
+					<td>글쓴이 : <%=b.boardWriter%></td>	
 					<td>작성일자 : <%=b.createdate%></td>
+				</tr>
 				<tr>
 					<td colspan="4">
 						<%=b.boardContent%>
 					</td>
+				</tr>
 			</table>
 			<div class="text-right">
 				<a class="btn btn-sm btn-outline-info mr-3" href="<%=request.getContextPath()%>/board/updateBoardForm.jsp?boardNo=<%=b.boardNo%>">게시글 수정</a>
@@ -115,7 +130,7 @@
 		</div>
 		<!-- 댓글 목록 -->
 		<div class="container mt-5">
-			<div class="fw-bold text-left font-weight-bold p-3" style="background-color : #6a89cc; color:white;"><h3>댓글목록</h3></div>
+			<div class="p-3 head"><h3>댓글목록</h3></div>
 			<%
 				for(Comment c : commentList){
 			%>
@@ -153,7 +168,7 @@
 		</div>
 		<!-- 댓글입력 폼 -->
 		<div class="container mt-5">
-			<div class="fw-bold text-left font-weight-bold p-3" style="background-color : #6a89cc; color:white;"><h3>댓글입력</h3></div>
+			<div class="p-3 head"><h3>댓글입력</h3></div>
 			<form action="<%=request.getContextPath()%>/board/insertCommentAction.jsp" method="post">
 				<input type="hidden" name="boardNo" value="<%=b.boardNo%>">
 				<table class="table table-bordered">
@@ -171,7 +186,6 @@
 						<%		
 							}else{
 						%>
-								<div class="text-danger"><%=request.getParameter("msg")%></div>
 								<tr>
 									<td>내용</td>
 									<td><textarea class="form-control" rows="3" cols="80" name="commentContent" required></textarea></td>
@@ -184,6 +198,7 @@
 							}
 						%>
 				</table>
+				<div class="text-danger"><%=request.getParameter("msg")%></div>
 				<div class="text-right mb-5">
 					<button class="btn btn-sm btn-outline-info mr-3" type="submit">댓글입력</button>
 				</div>

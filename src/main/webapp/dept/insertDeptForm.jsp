@@ -61,7 +61,7 @@
 				<%		
 					}
 				%>
-				<button type="submit" class="btn btn-lg btn-block btn-outline-primary m-auto">추가</button>
+				<button type="submit" class="btn btn-lg btn-block btn-outline-primary m-auto">등록</button>
 				<div class="text-right">
 					<a class="btn btn-outline-info mt-3" href="<%=request.getContextPath()%>/dept/deptList.jsp">목록</a>
 				</div>

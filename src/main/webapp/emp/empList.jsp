@@ -5,12 +5,13 @@
 <%
 	//페이지 알고리즘
 	int currentPage = 1;
-	int lastPage = 0;
-	int dataCount = 0;
-	int rowPerPage = 20; //한 페이지에 보여줄 데이터 수 
 	if(request.getParameter("currentPage") != null){
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 	}
+	int rowPerPage = 20; //한 페이지에 보여줄 데이터 수 
+	int beginRow = (currentPage - 1) * rowPerPage;
+	int dataCount = 0;
+	int lastPage = 0;
 	String word = request.getParameter("word");
 	
 	//db정보
@@ -30,7 +31,7 @@
 		
 		empSql = "SELECT emp_no empNo, first_name firstName, last_name lastName FROM employees ORDER BY emp_no ASC LIMIT ?,?";
 		empStmt = conn.prepareStatement(empSql);
-		empStmt.setInt(1, rowPerPage * (currentPage - 1));
+		empStmt.setInt(1, beginRow);
 		empStmt.setInt(2, rowPerPage);
 	}else{
 		CountSql = "SELECT COUNT(*) FROM employees WHERE first_name LIKE ? OR last_name LIKE ?";
@@ -41,7 +42,7 @@
 		empSql = "SELECT emp_no empNo, first_name firstName, last_name lastName FROM employees WHERE CONCAT(first_name,last_name) LIKE REPLACE(?,' ','') ORDER BY emp_no ASC LIMIT ?,?";
 		empStmt = conn.prepareStatement(empSql);
 		empStmt.setString(1, "%"+word+"%");
-		empStmt.setInt(2, rowPerPage * (currentPage - 1));
+		empStmt.setInt(2, beginRow);
 		empStmt.setInt(3, rowPerPage);
 	}
 
@@ -54,7 +55,7 @@
 	if(dataCount % rowPerPage != 0){
 		lastPage = lastPage + 1;
 	}
-
+	
 	ResultSet empRs = empStmt.executeQuery();
 	ArrayList<Employee> empList = new ArrayList<>();
 	while(empRs.next()){
@@ -83,11 +84,11 @@
 		<div>
 			<h1 class="pb-1 pt-1">EMP LIST</h1>	
 		</div>	
-		<div class="font-weight-bold">
+		<div>
 			<!-- 부서 목록 추가 (부서번호 내림차순) -->
 			<h2 class="pb-1 pt-1">사원 목록</h2>
-			<a class="btn btn-info float-right mr-3 mb-3" href="<%=request.getContextPath()%>/emp/insertEmpForm.jsp">사원추가</a>
 			<div style="position: relative;">
+				<a class="btn btn-info float-right mr-3 mb-3" href="<%=request.getContextPath()%>/emp/insertEmpForm.jsp">사원추가</a>
 				<%
 					if(word == null){
 				%>
@@ -136,7 +137,13 @@
 						}else{
 					%>
 							<div class="text-center">
-								<a href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=1&word=<%=word%>"><button>&lt;&lt;</button></a>
+								<%
+									if(lastPage != 0){
+								%>
+										<a href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=1&word=<%=word%>"><button>&lt;&lt;</button></a>
+								<%
+									}
+								%>
 								<%
 									if(currentPage > 1){
 								%>
@@ -150,7 +157,13 @@
 								<%		
 									}
 								%>
-								<a href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=lastPage%>&word=<%=word%>"><button>&gt;&gt;</button></a>
+								<%
+									if(lastPage != 0){
+								%>
+										<a href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=lastPage%>&word=<%=word%>"><button>&gt;&gt;</button></a>
+								<%
+									}
+								%>
 							</div>
 							<div class="text-right ml-3"><div class="text-right">page : <%=currentPage%> / <%=lastPage%></div></div>
 					<%		
@@ -161,11 +174,12 @@
 
 			<table class="table table-striped table-hover">
 				<thead class="sticky-top">
-					<th scope="col">사원 코드</th>
-					<th scope="col">퍼스트네임</th>
-					<th scope="col">라스트네임</th>
-					<th scope="col">수정</th>
-					<th scope="col">삭제</th>
+					<tr>
+						<th scope="col">사번</th>
+						<th scope="col">이름</th>
+						<th scope="col">수정</th>
+						<th scope="col">삭제</th>
+					</tr>
 				</thead>
 				<tbody>
 					<%
@@ -173,8 +187,7 @@
 					%>
 							<tr>
 								<td><%=e.empNo%></td>
-								<td><%=e.firstName%></td>
-								<td><%=e.lastName%></td>
+								<td><a href="<%=request.getContextPath()%>/salary/salaryList.jsp?empNo=<%=e.empNo%>"><%=e.firstName%> <%=e.lastName%></a></td>
 								<td><a class="btn btn-sm btn-outline-info" href="<%=request.getContextPath()%>/dept/updateEmpForm.jsp?deptNo=<%=e.empNo%>">수정</a></td>
 								<td><a class="btn btn-sm btn-outline-danger" href="<%=request.getContextPath()%>/dept/deleteEmp.jsp?deptNo=<%=e.empNo%>">삭제</a></td>
 							</tr>
