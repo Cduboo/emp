@@ -2,6 +2,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="vo.*" %>
 <%@ page import="java.util.*" %>
+<%@ page import="java.net.URLEncoder" %>
 <%
 	//페이지 알고리즘
 	int currentPage = 1;
@@ -94,7 +95,7 @@
 			<!-- 부서 목록 추가 (부서번호 내림차순) -->
 			<h2 class="pb-1 pt-1">사원 목록</h2>
 			<div style="position: relative;">
-				<a class="btn btn-info float-right mr-3 mb-3" href="<%=request.getContextPath()%>/emp/insertEmpForm.jsp">사원추가</a>
+				<a class="btn btn-info float-right mr-3 mb-3" href="#">사원추가</a>
 				<%
 					if(word == null){
 				%>
@@ -194,8 +195,8 @@
 							<tr>
 								<td><%=e.empNo%></td>
 								<td><a href="<%=request.getContextPath()%>/salary/salaryList.jsp?empNo=<%=e.empNo%>"><%=e.firstName%> <%=e.lastName%></a></td>
-								<td><a class="btn btn-sm btn-outline-info" href="<%=request.getContextPath()%>/dept/updateEmpForm.jsp?deptNo=<%=e.empNo%>">수정</a></td>
-								<td><a class="btn btn-sm btn-outline-danger" href="<%=request.getContextPath()%>/dept/deleteEmp.jsp?deptNo=<%=e.empNo%>">삭제</a></td>
+								<td><a class="btn btn-sm btn-outline-info" href="#">수정</a></td>
+								<td><a class="btn btn-sm btn-outline-danger" href="#">삭제</a></td>
 							</tr>
 					<%							
 						}

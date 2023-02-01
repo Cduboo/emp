@@ -15,6 +15,6 @@
 		<!-- request.getContextPath()는 클라이언트(밖)가 부를 때 사용한다. include는 서버(안)가 부른다. -->
 		<jsp:include page="/inc/menu.jsp"></jsp:include>
 		<!-- 본문 내용 -->
-		<h1>미완</h1>
+		<h4>테스트용 샘플 데이터베이스(employees) 프로젝트 <code>Model1 방식</code></h4>
 	</body>
 </html>

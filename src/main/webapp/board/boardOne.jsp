@@ -153,7 +153,13 @@
 				}
 			%>
 			<!-- 댓글 페이징 -->
-			<div class="text-right">page : <%=currentPage%> / <%=lastPage%></div>
+			<%
+				if(lastPage != 0) {
+			%>
+					<div class="text-right">page : <%=currentPage%> / <%=lastPage%></div>
+			<%		
+				}
+			%>
 			<div class="text-center m-5">
 			<a class="btn btn-sm btn-outline-info mr-3" href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=boardNo%>&currentPage=1">&lt;첫페이지</a>
 			<%
@@ -169,7 +175,13 @@
 			<%		
 				}
 			%>
-			<a class="btn btn-sm btn-outline-info mr-3" href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=boardNo%>&currentPage=<%=lastPage%>">마지막페이지&gt;</a>
+			<%
+				if(lastPage != 0) {
+			%>
+					<a class="btn btn-sm btn-outline-info mr-3" href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=boardNo%>&currentPage=<%=lastPage%>">마지막페이지&gt;</a>			
+			<%		
+				}
+			%>
 			</div>
 		</div>
 		<!-- 댓글입력 폼 -->
@@ -204,7 +216,15 @@
 							}
 						%>
 				</table>
-				<div class="text-danger"><%=request.getParameter("msg")%></div>
+				<div class="text-danger">
+					<%
+						if(request.getParameter("msg") != null){
+					%>
+							<%=request.getParameter("msg")%>
+					<%
+						}
+					%>	
+				</div>
 				<div class="text-right mb-5">
 					<button class="btn btn-sm btn-outline-info mr-3" type="submit">댓글입력</button>
 				</div>
