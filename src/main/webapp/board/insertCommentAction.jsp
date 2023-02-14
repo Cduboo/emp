@@ -22,7 +22,7 @@
 	String url = "jdbc:mariadb://localhost:3306/employees";
 	String user = "root";
 	String password = "java1234";
-	String sql = "INSERT INTO COMMENT(board_no, comment_pw, comment_content, createdate) VALUES(?,?,?,CURDATE())";
+	String sql = "INSERT INTO comment(board_no, comment_pw, comment_content, createdate) VALUES(?,?,?,CURDATE())";
 	// mariadb 드라이버 로딩
 	Class.forName("org.mariadb.jdbc.Driver");
 	Connection conn = DriverManager.getConnection(url, user, password);
